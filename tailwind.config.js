@@ -29,6 +29,12 @@ export default {
           300: '#EDFF66'
         },
       },
+      spacing: {
+        '64': '16rem' /* 256px */
+      },
+      size: {
+        '64': '16rem' /* 256px */
+      },
     }
   },
   plugins: [],
