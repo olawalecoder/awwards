@@ -37,17 +37,23 @@ const Hero = () => {
 
     useGSAP(() => {
         if(hasClicked) {
-            gsap.set("#next-video", {visibility: 'visible'});
+            gsap.set("#next-video", { visibility: 'visible', opacity: 1 });
 
+            // Simultaneous expansion and fade-out
             gsap.to("#next-video", {
                 transformOrigin: "center center",
                 scale: 1,
-                width: "100%",
-                height: "100%",
-                duration: 1,
+                width: "100vw",
+                height: "100vh",
+                opacity: 0,
+                duration: 0.5, // Smooth duration for both effects
                 ease: "power1.inOut",
                 onStart: () => nextVideoRef.current.play(),
-            })
+                onComplete: () => {
+                    // Reset visibility and z-index after fade-out
+                    gsap.set("#next-video", { visibility: 'hidden', zIndex: -1 });
+                },
+            });
 
             gsap.from("#current-video", {
                 transformOrigin: "center center",
@@ -110,16 +116,15 @@ const Hero = () => {
                         loop
                         muted
                         id="next-video"
-                        className="absolute-center absolute size-64 z-20 invisible object-center"
+                        className="absolute-center absolute size-64 z-20 invisible object-cover object-center"
                         onLoadedData={handleVideoLoad}
                     />
 
                     <video
                         src={getVideoSrc(currentIndex === totalVideos - 1 ? 1 : currentIndex)}
                         ref={nextVideoRef}
-                        // autoPlay
+                        autoPlay
                         muted
-                        id="next-video"
                         className="absolute left-0 top-0 size-full object-center object-cover "
                         onLoadedData={handleVideoLoad}
                     />
