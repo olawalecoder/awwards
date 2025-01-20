@@ -117,7 +117,7 @@ const Hero = () => {
                     <video
                         src={getVideoSrc(currentIndex === totalVideos - 1 ? 1 : currentIndex)}
                         ref={nextVideoRef}
-                        autoPlay
+                        // autoPlay
                         muted
                         id="next-video"
                         className="absolute left-0 top-0 size-full object-center object-cover "
