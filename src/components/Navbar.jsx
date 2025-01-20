@@ -5,7 +5,7 @@ import Button from "./Button";
 import {useWindowScroll} from "react-use";
 
 
-const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
+const navItems = ["Nexus", "Prologue", "About", "Contact"];
 
 const Navbar = () => {
 
